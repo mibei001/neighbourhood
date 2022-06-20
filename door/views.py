@@ -17,3 +17,16 @@ def home_page(request):
     except Exception as e:
         raise Http404
     return render(request, "index.html", {"mtaa": mtaa})
+
+
+@login_required(login_url='accounts/login/')
+def create_mtaa(request):
+    if request.method == "POST":
+        form = NeighbourForm(request.POST, request.FILES)
+        if form.is_valid():
+            mtaa = form.save(commit=False)
+            mtaa.save()
+        return redirect("profile")
+    else:
+        form = NeighbourForm()
+    return render(request, "create_mtaa.html", {"form": form})
