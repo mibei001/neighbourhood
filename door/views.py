@@ -30,3 +30,16 @@ def create_mtaa(request):
     else:
         form = NeighbourForm()
     return render(request, "create_mtaa.html", {"form": form})
+
+
+@login_required(login_url='accounts/login/')
+def profile(request):
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+
+    else:
+        form = ProfileForm()
+    return render(request, "profile.html", {"form": form, "profile": profile})
