@@ -43,3 +43,9 @@ def profile(request):
     else:
         form = ProfileForm()
     return render(request, "profile.html", {"form": form, "profile": profile})
+
+
+@login_required(login_url='accounts/login/')
+def post(request):
+    posts = Post.objects.all().order_by('-posted_on')
+    return render(request, "post.html", {"posts": posts})
