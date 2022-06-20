@@ -18,6 +18,18 @@ class Neighbour(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def __str__(self) -> str:
+        return self.description
+
+    def __str__(self) -> str:
+        return self.location
+
+    def __str__(self) -> str:
+        return self.population
+
+    def __str__(self) -> str:
+        return self.user
+
     def create_neighbour(self):
         self.save()
 
@@ -44,6 +56,18 @@ class Post(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def __str__(self) -> str:
+        return self.description
+
+    def __str__(self) -> str:
+        return self.post_by
+
+    def __str__(self) -> str:
+        return self.neighbourhood
+
+    def __str__(self) -> str:
+        return self.posted_on
+
     def save_post(self):
         self.save()
 
@@ -62,6 +86,18 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+    def __str__(self):
+        return self.user
+
+    def __str__(self):
+        return self.description
+
+    def __str__(self):
+        return self.neighbourhood
+
+    def __str__(self):
+        return self.email
+
     def create_business(self):
         self.save()
 
@@ -79,3 +115,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} profile'
+
+    def __str__(self):
+        return self.bio
+
+    def __str__(self):
+        return self.neighbourhood
