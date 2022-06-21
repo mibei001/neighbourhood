@@ -33,25 +33,25 @@ class Neighbour(TestCase):
 class Post(TestCase):
     def setUp(self):
         self.title = Post(user='Noise')
-        self.description = Post(bio='This is my bio')
-        self.post_by = Post(bio='This is my bio')
-        self.neighbourhood = Post(bio='This is my bio')
-        self.posted_on = Post(bio='This is my bio')
+        self.description = Post(description='This is my bio')
+        self.post_by = Post(post_by='kevin')
+        self.neighbourhood = Post(neighbourhood='Jamuhuri')
+        self.posted_on = Post(posted_on='2022,01,10')
 
     def test_string(self):
-        self.assertEqual(str(self.title), 'kevin')
+        self.assertEqual(str(self.title), 'Noise')
 
     def test_string(self):
-        self.assertEqual(str(self.description), 'This is my bio')
+        self.assertEqual(str(self.description), 'This is a Description')
 
     def test_string(self):
         self.assertEqual(str(self.post_by), 'kevin')
 
     def test_string(self):
-        self.assertEqual(str(self.neighbourhood), 'kevin')
+        self.assertEqual(str(self.neighbourhood), 'Jamuhuri')
 
     def test_string(self):
-        self.assertEqual(str(self.posted_on), 'kevin')
+        self.assertEqual(str(self.posted_on), '2022,01,10')
 
 
 class Business(TestCase):
