@@ -68,21 +68,36 @@ def new_post(request):
 
 @login_required(login_url='accounts/login/')
 def new_business(request):
+
     user = User.objects.filter(id=request.user.id).first()
     profile = Profile.objects.filter(user=user).first()
     if request.method == "POST":
         business_form = BusinessForm(request.POST, request.FILES)
         if business_form.is_valid():
-            business = Business(
-                name=request.POST['name'], neighbourhood=profile.neighbourhood)
-            business.save()
+            # business = Business(
+            # name=request.POST['name'], neighbourhood=Profile.neighbourhood)
+            business_form.save()
+
         return redirect('business')
     else:
         business_form = BusinessForm()
-    return render(request, "new_business.html", {"business": business_form})
+        business = Business.objects.all()
+    return render(request, "new_business.html", {"business_form": business_form, "business": business})
 
 
 @login_required
 def logout(request):
     django_logout(request)
     return HttpResponseRedirect('/')
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        business = Business.objects.filter(
+            name=searched)
+
+        return render(request, "search.html", {"business": business})
+    else:
+        message = "You havent searched any business"
+        return render(request, "search.html", {"message": message})
